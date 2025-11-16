@@ -1,5 +1,5 @@
-import { createClient, type User } from '@supabase/supabase-js'
-import { writable } from 'svelte/store';
+import { createClient } from '@supabase/supabase-js'
+// import { writable } from 'svelte/store';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
@@ -8,17 +8,17 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 // manage user state
-export const user = writable<User | null>(null);
-
-supabase.auth.getUser().then(({ data }) => {
-  user.set(data.user);
-});
-
-supabase.auth.onAuthStateChange((event, session) => {
-  if (event == 'SIGNED_IN' && session) {
-    user.set(session.user);
-  } else if (event == 'SIGNED_OUT') {
-    user.set(null);
-  }
-});
-
+// export const user = writable<User | null>(null);
+//
+// supabase.auth.getUser().then(({ data }) => {
+//   user.set(data.user);
+// });
+//
+// supabase.auth.onAuthStateChange((event, session) => {
+//   if (event == 'SIGNED_IN' && session) {
+//     user.set(session.user);
+//   } else if (event == 'SIGNED_OUT') {
+//     user.set(null);
+//   }
+// });
+//
