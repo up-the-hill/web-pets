@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { supabase } from '$lib/supabase';
+	import { user } from '$lib/store';
 </script>
 
 <header>
 	<a href="/">web-pets</a>
 	<div>
-		{#await supabase.auth.getUser()}
+		{#if $user.loading}
 			Loading...
-		{:then { data }}
-			{#if data.user}
-				<a href="/users/{data.user?.id}">home</a>
-				<a href="/logout">logout</a>
-			{:else}
-				<a href="/login">login</a>
-			{/if}
-		{/await}
+		{:else if $user.error}
+			{$user.error}
+		{:else if $user.username}
+			<a href="/users/{$user.username}">home</a>
+			<a href="/logout">logout</a>
+		{:else}
+			<a href="/login">login</a>
+		{/if}
 	</div>
 </header>
 

@@ -4,8 +4,8 @@
 		let { data, error } = await supabase.auth.signInWithOAuth({
 			provider: 'github'
 		});
-		if (error) console.log(error);
-		else console.log(data);
+		// if (error) console.log(error);
+		// else console.log(data);
 	};
 </script>
 
