@@ -14,14 +14,53 @@ export type Database = {
   }
   public: {
     Tables: {
-      Pets: {
+      pet_stages: {
+        Row: {
+          pet_type: string
+          stage: number
+          stage_name: string | null
+        }
+        Insert: {
+          pet_type: string
+          stage?: number
+          stage_name?: string | null
+        }
+        Update: {
+          pet_type?: string
+          stage?: number
+          stage_name?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pet_stages_pet_type_fkey"
+            columns: ["pet_type"]
+            isOneToOne: false
+            referencedRelation: "pet_types"
+            referencedColumns: ["name"]
+          },
+        ]
+      }
+      pet_types: {
+        Row: {
+          name: string
+        }
+        Insert: {
+          name: string
+        }
+        Update: {
+          name?: string
+        }
+        Relationships: []
+      }
+      pets: {
         Row: {
           affection: number
           created_at: string
           hunger: number
-          id: number
           name: string
-          owner: string | null
+          owner: string
+          pet_type: string
+          stage: number
           times_fed: number
           times_pet: number
         }
@@ -29,9 +68,10 @@ export type Database = {
           affection?: number
           created_at?: string
           hunger?: number
-          id?: number
           name: string
-          owner?: string | null
+          owner: string
+          pet_type?: string
+          stage?: number
           times_fed?: number
           times_pet?: number
         }
@@ -39,11 +79,49 @@ export type Database = {
           affection?: number
           created_at?: string
           hunger?: number
-          id?: number
           name?: string
-          owner?: string | null
+          owner?: string
+          pet_type?: string
+          stage?: number
           times_fed?: number
           times_pet?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pets_owner_fkey"
+            columns: ["owner"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["username"]
+          },
+          {
+            foreignKeyName: "pets_pet_type_fkey"
+            columns: ["pet_type"]
+            isOneToOne: false
+            referencedRelation: "pet_types"
+            referencedColumns: ["name"]
+          },
+          {
+            foreignKeyName: "pets_pet_type_fkey1"
+            columns: ["pet_type"]
+            isOneToOne: false
+            referencedRelation: "pet_types"
+            referencedColumns: ["name"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          id: string
+          username: string | null
+        }
+        Insert: {
+          id: string
+          username?: string | null
+        }
+        Update: {
+          id?: string
+          username?: string | null
         }
         Relationships: []
       }
