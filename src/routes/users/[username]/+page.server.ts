@@ -1,18 +1,45 @@
-import type { PageServerLoadEvent } from './$types';
-import { supabase } from '$lib/supabase';
+import type { PageServerLoad, Actions } from './$types';
 
-export async function load({ params }: PageServerLoadEvent) {
-  const { userId } = params;
+export const load: PageServerLoad = async ({ params, locals }) => {
+  const { username } = params;
+  const { supabase } = locals;
 
+  // get data about user, i.e. if user exists
   const { data: user, error: userError } = await supabase
-    .from('users')
+    .from('profiles')
     .select("*")
-    .eq('id', userId)
+    .eq('username', username)
+    .single()
 
-  const { data: pets, error: petsError } = await supabase
+  // get user's pet
+  const { data: pet, error: petError } = await supabase
     .from('pets')
     .select("*")
-    .eq('owner', userId)
+    .eq('owner', username)
+    .maybeSingle()
 
-  return { userId, user, userError, pets, petsError };
+  return { user, userError, pet, petError };
 }
+
+// methods for pet creation
+export const actions: Actions = {
+  default: async ({ request, params, locals }) => {
+    const data = await request.formData();
+    const { username } = params;
+    const { supabase } = locals;
+
+    const { data: res, error } = await supabase
+      .from('pets')
+      .insert([
+        { name: data.get('name'), pet_type: data.get('type'), owner: username },
+      ])
+      .select()
+
+    console.log("ERROR")
+    console.log(error)
+    console.log("RES")
+    console.log(res)
+    console.log("PAYLOAD")
+    console.log({ name: data.get('name'), pet_type: data.get('type'), owner: username })
+  }
+};

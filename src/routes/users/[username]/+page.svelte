@@ -1,20 +1,20 @@
 <script lang="ts">
-	let { data } = $props();
+	import PetForm from './PetForm.svelte';
+	import type { PageProps } from './$types';
+	let { data }: PageProps = $props();
 </script>
 
 {#if data.user}
-	<h1>{data.userId}</h1>
+	<h1>{data.user.username}</h1>
 
-	{#if data.petsError}
-		<p>Error: {data.petsError.message}</p>
-	{:else if data.pets && data.pets.length > 0}
+	{#if data.petError}
+		<p>Error: {data.petError.message}</p>
+	{:else if data.pet}
 		<ul>
-			{#each data.pets as pet}
-				<li>{pet.name}</li>
-			{/each}
+			<li>{data.pet.name}</li>
 		</ul>
 	{:else}
-		<p>No pets found.</p>
+		<PetForm />
 	{/if}
 {:else}
 	User Not Found
