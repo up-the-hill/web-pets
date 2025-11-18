@@ -1,13 +1,21 @@
+import type { Writable } from 'svelte/store';
+import type { AuthError } from '@supabase/supabase-js';
+import type { SupabaseClient } from '@supabase/supabase-js';
 import { writable } from 'svelte/store';
-import { supabase } from '$lib/supabase';
 
-export const user = writable({
+type userType = {
+  username: null | string,
+  loading: boolean,
+  error: null | AuthError
+}
+
+export const user: Writable<userType> = writable({
   username: null,
   loading: true,
   error: null
 });
 
-export async function loadUser() {
+export async function loadUser(supabase: SupabaseClient) {
   const {
     data: { user: userData },
     error

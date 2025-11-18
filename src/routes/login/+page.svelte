@@ -1,11 +1,12 @@
-<script>
-	import { supabase } from '$lib/supabase';
+<script lang="ts">
+	let { data } = $props();
+
 	let handleSignInWithGithub = async () => {
-		let { data, error } = await supabase.auth.signInWithOAuth({
+		let { data: response, error } = await data.supabase.auth.signInWithOAuth({
 			provider: 'github'
 		});
-		// if (error) console.log(error);
-		// else console.log(data);
+		if (error) console.log(error);
+		else console.log(response);
 	};
 </script>
 

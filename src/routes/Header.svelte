@@ -8,7 +8,8 @@
 		{#if $user.loading}
 			Loading...
 		{:else if $user.error}
-			{$user.error}
+			<!-- {$user.error} -->
+			<a href="/login">login</a>
 		{:else if $user.username}
 			<a href="/users/{$user.username}">home</a>
 			<a href="/logout">logout</a>
