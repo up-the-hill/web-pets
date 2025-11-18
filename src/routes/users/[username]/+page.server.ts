@@ -34,12 +34,5 @@ export const actions: Actions = {
         { name: data.get('name'), pet_type: data.get('type'), owner: username },
       ])
       .select()
-
-    console.log("ERROR")
-    console.log(error)
-    console.log("RES")
-    console.log(res)
-    console.log("PAYLOAD")
-    console.log({ name: data.get('name'), pet_type: data.get('type'), owner: username })
   }
 };

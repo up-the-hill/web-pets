@@ -54,9 +54,9 @@ export type Database = {
       }
       pets: {
         Row: {
-          affection: number
           created_at: string
-          hunger: number
+          friendship: number
+          last_fed: string | null
           name: string
           owner: string
           pet_type: string
@@ -65,9 +65,9 @@ export type Database = {
           times_pet: number
         }
         Insert: {
-          affection?: number
           created_at?: string
-          hunger?: number
+          friendship?: number
+          last_fed?: string | null
           name: string
           owner: string
           pet_type?: string
@@ -76,9 +76,9 @@ export type Database = {
           times_pet?: number
         }
         Update: {
-          affection?: number
           created_at?: string
-          hunger?: number
+          friendship?: number
+          last_fed?: string | null
           name?: string
           owner?: string
           pet_type?: string

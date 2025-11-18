@@ -1,5 +1,6 @@
 <script lang="ts">
 	import PetForm from './PetForm.svelte';
+	import PetDisplay from './PetDisplay.svelte';
 	import type { PageProps } from './$types';
 	let { data }: PageProps = $props();
 </script>
@@ -10,9 +11,7 @@
 	{#if data.petError}
 		<p>Error: {data.petError.message}</p>
 	{:else if data.pet}
-		<ul>
-			<li>{data.pet.name}</li>
-		</ul>
+		<PetDisplay petData={data.pet} supabase={data.supabase} />
 	{:else}
 		<PetForm />
 	{/if}
