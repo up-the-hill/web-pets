@@ -11,4 +11,4 @@
 </script>
 
 <h1>login page</h1>
-<button on:click={handleSignInWithGithub}>Sign in with GitHub</button>
+<button onclick={handleSignInWithGithub}>Sign in with GitHub</button>
