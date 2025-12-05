@@ -11,7 +11,7 @@
 	{#if data.petError}
 		<p>Error: {data.petError.message}</p>
 	{:else if data.pet}
-		<PetDisplay petData={data.pet} supabase={data.supabase} />
+		<PetDisplay petData={data.pet} />
 	{:else}
 		<PetForm />
 	{/if}

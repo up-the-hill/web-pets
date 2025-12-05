@@ -23,7 +23,19 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 
 // methods for pet creation
 export const actions: Actions = {
-  default: async ({ request, params, locals }) => {
+  feed: async ({ request, params, locals }) => {
+    const data = await request.formData();
+    const { supabase } = locals;
+    const { username } = params;
+
+    const { data: res, error } = await supabase.rpc('feed_pet', {
+      pet_name: data.get('pet_name'),
+      owner_name: username
+    });
+
+    return { feed_res: res };
+  },
+  create: async ({ request, params, locals }) => {
     const data = await request.formData();
     const { username } = params;
     const { supabase } = locals;

@@ -4,7 +4,7 @@
 </script>
 
 <h2>Adopt a Pet</h2>
-<form method="post">
+<form method="post" action="?/create">
 	<div>
 		<label for="pet-name">Pet Name:</label>
 		<input id="pet-name" name="name" type="text" bind:value={petName} />
