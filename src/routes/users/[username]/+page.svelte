@@ -9,12 +9,18 @@
 	<h1>{data.user.username}</h1>
 
 	{#if data.petError}
-		<p>Error: {data.petError.message}</p>
+		<div class="error">Error: {data.petError.message}</div>
 	{:else if data.pet}
 		<PetDisplay petData={data.pet} />
 	{:else}
 		<PetForm />
 	{/if}
 {:else}
-	User Not Found
+	<div class="error">User Not Found</div>
 {/if}
+
+<style>
+	h1 {
+		border-bottom: 2px double;
+	}
+</style>

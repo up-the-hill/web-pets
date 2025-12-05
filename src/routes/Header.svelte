@@ -5,8 +5,9 @@
 <header>
 	<a href="/">web-pets</a>
 	<div>
+		<a href="/leaderboard">leaderboard</a>
 		{#if $user.loading}
-			Loading...
+			<span>Loading...</span>
 		{:else if $user.error}
 			<!-- {$user.error} -->
 			<a href="/login">login</a>
@@ -28,5 +29,9 @@
 		justify-content: space-between;
 		grid-area: header;
 		border-bottom: dashed 1px;
+	}
+
+	header * {
+		padding-inline: 2px;
 	}
 </style>

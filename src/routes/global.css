@@ -74,3 +74,11 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+:root {
+  font-family: sans-serif;
+}
+
+/* a { */
+/*   text-decoration: none; */
+/* } */

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	let { petData } = $props();
-	function calculateHunger(d: Date): number {
-		return 0;
-	}
+	// function calculateHunger(d: Date): number {
+	// 	return d.getTime();
+	// }
 	type StageMap = {
 		[petType: string]: {
 			[stage: number]: string;
@@ -43,10 +43,10 @@
 				<th>Type</th>
 				<td>{getStageName(petData.pet_type, petData.stage)}</td>
 			</tr>
-			<tr>
-				<th>Hunger</th>
-				<td>{calculateHunger(petData.last_fed)}</td>
-			</tr>
+			<!-- <tr> -->
+			<!-- 	<th>Hunger</th> -->
+			<!-- 	<td>{calculateHunger(new Date(petData.last_fed))}</td> -->
+			<!-- </tr> -->
 			<!-- <tr> -->
 			<!-- 	<th>Friendship</th> -->
 			<!-- 	<td>{petData.friendship}</td> -->
