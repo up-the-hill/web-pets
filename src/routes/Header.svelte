@@ -22,8 +22,11 @@
 <style>
 	header {
 		position: sticky;
+		top: 0;
 		display: flex;
 		padding: 1em;
 		justify-content: space-between;
+		grid-area: header;
+		border-bottom: dashed 1px;
 	}
 </style>
